@@ -4,8 +4,26 @@ metadata:
   name: simple-deployment
 spec:
   replicas: 3
+  revisionHistoryLimit: 3 # 保留历史版本
+  paused: false           # 暂停部署，默认是false
+  progressDeadlineSeconds: 600 # 部署超时时间（s），默认是600
+  strategy:
+    rollingUpdate:
+      maxSurge: 20%
+      maxUnavailable: 30%
+    type: "RollingUpdate"
+
+  selector:
+    matchExpressions:
+      - key: env
+        operator: Exists
+      - {key: app, operator: In, values: [nginx-pod]}
+    matchLables:
+      app: nginx
+  # new container template 当副本数量不足时使用该模板扩展
   template:
     metadata:
+      name: nginx-app
       labels:
         editor: vscode
     spec:

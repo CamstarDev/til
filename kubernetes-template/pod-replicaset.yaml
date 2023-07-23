@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myapp
+  namespace: "netcore"
+  labels: 
+    controller: replica
+    
+spec:
+  replicas: 5
+  selector:   #选择器，选择管理哪些pod
+    matchExpressions:
+      - key: version
+        operator: In
+        values: ["2.0","2.1"]
+    matchLables:
+      app: nginx
+  template:   #当pod数量不足时，以该模板创建新副本集
+    metadata:
+      name: myapp
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: nginx:1.17.1-replica
+          image: nginx:1.17.1
+          ports:
+            - containerPort: 80
+  

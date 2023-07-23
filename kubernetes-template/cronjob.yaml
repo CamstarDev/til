@@ -1,0 +1,36 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: mycjob
+spec:
+  startingDeadlineSeconds: 100 #在该时间还未开始执行的话将会被终结 启动作业错误的超时时长
+
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 10
+
+  schedule: "*/1 * * * *"
+  concurrencyPolicy: "Replace"
+
+  jobTemplate: 
+    metadata:
+      name: myjob
+      namespace: dev
+      labels:
+        controller: job
+    spec:
+      ttlSecondsAfterFinished: 100
+      completions: 1
+      parallelism: 3  #指定job在同一时间并发运行的数量 
+      activeDeadlineSeconds: 30  # 指定job可运行的时间期限 （分配的时间片）超过时间还未结束 系统将会尝试终止
+      backoffLimit: 6 #指定job失败后进行重试的次数 
+      manualSelecotr: true #是否使用选择器 
+      template:
+        metadata:
+          name: nginx-app
+          namespace: dev
+        spec:
+          containers:
+          - name: pi
+            image: perl
+            command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+          restartPolicy: Never

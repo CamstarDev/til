@@ -124,8 +124,10 @@ spec:
       operator: "Equal"
       value: "2.0"
       effect: "NoExecute"
-      tolerationSeconds:  3600*24*7 # 容忍时间 在这段时间里pod不会被evict 
+      tolerationSeconds:  60 # 容忍时间 在这段时间里pod不会被evict  3600*24*7
 
+
+# 0/3 nodes are available ,2 does not mathch the affinity and 1 has the taint that pod can not tolerate
 # 通过在Node上添加污点属性，来决定是否允许Pod调度过来
 # Node被设置上污点之后就和Pod之间存在了一种相斥的关系，进而拒绝Pod调度进来，甚至可以将已经存在的Pod驱逐出去。
 # 污点的格式为：key=value:effect, key和value是污点的标签，effect描述污点的作用，支持如下三个选项：
@@ -135,6 +137,8 @@ spec:
 #NoExecute：kubernetes将不会把Pod调度到具有该污点的Node上，同时也会将Node上已存在的Pod驱离
 # 可以在node上添加污点用于拒绝pod调度上来，但是如果就是想将一个pod调度到一个有污点的node上去，这时候应该怎么做呢？这就要使用到容忍。
 # ，Node通过污点拒绝pod调度上去，Pod通过容忍忽略拒绝
+
+
 
 
 
