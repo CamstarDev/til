@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mypvc1
+spec:
+  selector:  # 采用标签对PV选择
+    matchLabels:
+      disktype: ssd
+      zone: AP
+  storageClassName: slow # 存储类别
+  resources:
+    requests:
+      storage: 500Mi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce

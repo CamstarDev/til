@@ -13,6 +13,10 @@ spec:
       maxUnavailable: 30%
     type: "RollingUpdate"
 
+
+  # 基于等值的标签要求的一种使用场景是 Pod 要指定节点选择标准。 例如，下面的示例 Pod 选择带有标签 "accelerator=nvidia-tesla-p100"。
+  nodeSelector: 
+    accelerator: nvidia-tesla-p100
   selector:
     matchExpressions:
       - key: env

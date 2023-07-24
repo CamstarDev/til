@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: myconfigmap
+  labels:
+    app: myapplication
+data:
+  my-key: my-value
+  info: |
+    username:admin
+    password:123456
+

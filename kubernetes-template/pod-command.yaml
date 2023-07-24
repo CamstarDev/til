@@ -21,4 +21,14 @@ spec:
         value: "8080"
     
     command: ["/bin/sh","-c","touch /tmp/hello.txt;while true;do /bin/echo $(date +%T) >> /tmp/hello.txt; sleep 3; done;"]
+
+    volumeMounts:
+    - name:  boxvolume
+      mountPath: /root/
+  volumes:
+  - name:  volumes
+    persistentVolumeClaim:
+      claimName: mypvc1
+      readOnly: false
+ 
      

@@ -45,7 +45,10 @@ spec:
     - name:  netcore-mount
       hostPath:
         path:  /tmp/lib/netcore
-  
+    - name: config
+      configMap:
+        name:  myconfigmap
+        optional: true
       
     
 
