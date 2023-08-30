@@ -43,10 +43,10 @@ p:first-line {
   text-decoration: underline;
 }
 p:before {
-  content: "嘿嘿";
+  content: "";
 }
 p:after {
-  content: "哈哈";
+  content: "";
 }
 
 /* color的四种写法
@@ -66,15 +66,15 @@ rgb函数：rgb(red,green,blue)
 rgba函数：rbga(red,green,blue,alpha)
  */
 
- .color {
-    color: rgb(25, 90, 146);
-    color: #fff;
-    color: #000;
-    color: #f00;
-    color: #0f0;
-    color: #00f;
-    color: rgba(0, 255, 170, 0.466);
- }
+.color {
+  color: rgb(25, 90, 146);
+  color: #fff;
+  color: #000;
+  color: #f00;
+  color: #0f0;
+  color: #00f;
+  color: rgba(0, 255, 170, 0.466);
+}
 
 /* 
 背景属性
@@ -92,8 +92,6 @@ background-attachment	背景图片是否跟随滚动	 取值：scroll(默认)、
 background          	简写  简写属性：background:background-color|background-image|background-repeat|background-position 以空格隔开，书写顺序没有要求
 */
 
-
-
 /* 
 列表属性
 list-style-type	    设置列表前的标记	取值：none、disc、circle、square、decimal 此时不再区分有序列表还是无序列表，只要设置列表前的标记就可以了
@@ -102,27 +100,28 @@ list-style-position	设置标记的位置	取值：outside(默认)、inside
 list-style	        简写	
  */
 
- .first{
-    list-style-type:circle;
+.first {
+  list-style-type: circle;
 }
-.second{
-    list-style-image:url(https://img2.baidu.com/it/u=3697453073,3304860876&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500);
+.second {
+  list-style-image: url(https://img2.baidu.com/it/u=3697453073,3304860876&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500);
 }
-.third{
-    list-style-type:circle;
-    list-style-position:inside;
+.third {
+  list-style-type: circle;
+  list-style-position: inside;
 }
-.fourth{
-    list-style:circle url(https://img2.baidu.com/it/u=3697453073,3304860876&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500)inside;
-    /* list-style:none; */
-}
-
-.nav li{
-    list-style:none;
-    float:left;
-    width:70px;
+.fourth {
+  list-style: circle
+    url(https://img2.baidu.com/it/u=3697453073,3304860876&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500)
+    inside;
+  /* list-style:none; */
 }
 
+.nav li {
+  list-style: none;
+  float: left;
+  width: 70px;
+}
 
 /* 表格属性
 border-collapse:表格中相邻的边框是否合并（折叠）为单一边框
@@ -187,12 +186,11 @@ border-width:1px 2px 4px;
 */
 
 div {
-    
-    width: 100px;
-    height: 100px;
-    background-color: #ccc;
-    border-color: #a32828 #fff #faa #baf;
-    border-width: 12px;
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+  border-color: #a32828 #fff #faa #baf;
+  border-width: 12px;
 }
 
 /* 
@@ -200,35 +198,325 @@ div {
 当一个元素出现在另一个元素上面时，第一个元素的下边距与第二元素的上边距会发生合并
 当一个元素包含在另一个元素中时，并且没有内边距或边框把外边距分隔开时，两个元素的上外边距会发生合并 */
 
-div{
-    width:50px;
-    height:50px;
-    background:#cccccc;
-    border: 2px solid;
-    border-color: #a32828 #fff #faa #baf;
+div {
+  width: 50px;
+  height: 50px;
+  background: #cccccc;
+  border: 2px solid;
+  border-color: #a32828 #fff #faa #baf;
 }
-.div1{
-    margin-bottom:20px;
+.div1 {
+  margin-bottom: 20px;
 }
-.div2{
-    margin-top:30px;
+.div2 {
+  margin-top: 30px;
 }
-.div3{
-    width:100px;
-    height:100px;
-    background:blue;
-    margin-top:20px;
-    /* padding:2px;
-*/			/* border:1px solid red; */
+.div3 {
+  width: 100px;
+  height: 100px;
+  background: blue;
+  margin-top: 20px;
+  /* padding:2px;
+*/ /* border:1px solid red; */
 }
-.div4{
-    margin-top:30px;
+.div4 {
+  margin-top: 30px;
 }
-p{
-    margin:20px 0;
+p {
+  margin: 20px 0;
 }
 
-
-
-定位
+/* 定位
 通过position属性实现对元素的定位，有四种定位方式
+static	    默认值	    按照常规文档流进行显示
+relative	相对定位	相对于标签原来的位置进行的定位
+absolute	绝对定位	相对于第一个非static定位的父标签的定位
+fixed	    固定定位	相对于浏览器窗品进行定位 
+
+设置定位方式后，还要设置定位属性（偏移量）：top、bottom、left、right
+
+相对定位
+先设置元素的position属性为relative,然后再设置偏移量
+
+绝对定位
+先设置父标签为非static定位，然后设置元素的position属性为absolute，最后再设置偏移量
+
+注意：
+一般来说都会将父标签设置为非static定位
+如果父标签不是非static定位，则会相对于浏览器窗口进行定位
+设置元素为绝对定位后，元素会浮到页面上方
+
+固定定位
+先设置元素的position属性为fixed，然后再设置偏移量
+
+设置元素为固定定位后，元素会浮动在页面上方
+
+z-index
+设置元素定位方式后，元素会浮在页面上方，此时可以通过z-index属性设置优先级，控制元素的堆叠顺序
+
+取值为数字，值越大优先级越高，默认为auto(大多数浏览器默认为0)
+
+注意：只能给非static定位的元素设置z-index属性
+*/
+
+#container {
+  width: 800px;
+  border: 1px solid #000000;
+  position: relative;
+}
+.div1,
+.div2,
+.div3,
+.div4 {
+  width: 100px;
+  height: 50px;
+}
+.div1 {
+  background: red;
+  position: relative; /* 相对定位 */
+  top: 20px;
+  left: 50px;
+  z-index: -5;
+}
+.div2 {
+  background: blue;
+  position: absolute;
+  left: 100px;
+  bottom: 50px;
+  z-index: -8;
+}
+.div3 {
+  background: green;
+  position: fixed;
+  bottom: 50px;
+  left: 100px;
+}
+.div4 {
+  background: cyan;
+  visibility: hidden;
+}
+
+/* 元素显示与隐藏
+display隐藏时不再占据页面中的空间，后面的元素会占用其位置
+
+visibility隐藏时会占据页面中的空间，位置还保留在页面中，只是不显示 */
+
+/* 
+轮廓属性
+轮廓outline,用于在元素周围绘制一个轮廓，位于border外围，可以突出显示元素
+
+常用属性:
+
+outline-width:  轮廓宽度
+outline-color:  轮廓颜色
+outline-style:  轮廓样式
+outline         简写
+
+在浏览器中，当鼠标单击或使用TAB键让一个表单或链接获得焦点时，该元素会有一个轮廓outline
+优点：可以提高使用表单的用户体验
+缺点：有时会影响美观 
+
+outline和border的区别
+border可以应用于所有html元素，而outline主要用于表单元素、超链接元素
+当元素获得焦点时会自动出现outline轮廓效果，当失去焦点时会自动消失，这是浏览器默认行为
+outline不影响元素的尺寸和位置，而border会影响
+
+
+宽高相关
+max-width:设置元素的最大宽度
+max-height:设置元素的最大高度
+min-width设置元素的最小宽度
+min-height设置元素的最小高度
+
+overflow属性
+当元素内容溢出时该如何处理
+
+常用取值：
+
+visible 溢出时可见，显示在元素外，默认值
+hidden  溢出的部分不可见（常用）
+scroll  无论是否出现溢出始终出现滚动条
+auto    溢出时自动出现滚动条
+
+
+cursor属性
+用于设置光标的形状
+
+常用属性：
+
+default默认光标，一般为箭头
+pointer手形，光标移动超链接上时一般显示为手形
+move表示可移动
+text表示文 本
+wait表示程序正忙，需要等待
+help表示帮助
+*/
+
+span {
+  cursor: help;
+}
+
+/* [属性]	选中含有指定属性的元素
+[属性=属性值]	选中含有指定属性和指定属性值的元素
+[属性^=属性值]	选中含有指定属性和指定属性值开头的元素
+[属性$=属性值]	选中含有指定属性和指定属性值结尾的元素
+[属性*=属性值]	选中指定属性名和含有指定属性值的元素 */
+
+/* 第一种方法：选择含有指定属性的元素。
+                语法：[属性名]{} */
+/*选择属性名为title,设置字体颜色红色  */
+[title] {
+  color: red;
+}
+/* 第二种用法：选择含有指定属性及指定属性值的元素。
+      语法：[属性名=属性值]{} */
+/*选择属性名为title和属性值为ab的元素 ,设置字体颜色绿色 */
+[title="ab"] {
+  color: green;
+}
+/* 第三种用法：选择含有指定属性及指定属性之开头的元素。
+      语法：[属性名^=属性值]{}  */
+/* 选择属性名为title和属性值以ab开头的元素，设置背景色黄色 */
+[title^="ab"] {
+  background-color: yellow;
+}
+/* 第四种用法：选择含有指定属性及指定属性值结尾的元素。
+      语法：[属性名$=属性值] */
+/* 选择属性名为title和属性值以ab结尾的元素，设置字体为30px */
+[title$="ab"] {
+  font-size: 30px;
+}
+/* 第五种用法：选择含有指定属性，只要含有某个属性值的元素。
+      语法：[属性值*=属性名]{} */
+/* 选择属性名为title和属性值含有c的元素，设置背景色为绿色 */
+[title*="c"] {
+  background-color: green;
+}
+
+/**选择了.demo下所有带有id属性的a元素 **/
+
+.demo a[id] {
+  align-self: start;
+}
+
+/**选择了.demo下同时拥有href和title属性的a元素 **/
+
+.demo a[href][title] {
+  height: auto;
+}
+
+/**选择了.demo下id="first"的a元素 **/
+
+.demo a[id="first"] {
+  align-self: start;
+}
+
+/**选择了.demo下id="first"，且拥有title属性的a元素 **/
+
+.demo a[id="first"][title] {
+  text-align: center;
+}
+
+/** 匹配不到元素 **/
+
+a[class="links"] {
+  text-align: center;
+}
+/* 使用类选择器可以匹配到 */
+.links {
+  text-align: center;
+}
+
+/** 这个才能匹配到 **/
+
+a[class="links item"] {
+  text-align: center;
+}
+
+/** 使用包含操作符可以匹配到元素 **/
+
+a[class~="links"] {
+  text-align: center;
+}
+
+/** href属性值以"mailto:"开头的所有a元素 **/
+
+a[href^="mailto:"] {
+  text-align: center;
+}
+
+/** href属性值以"png"结尾的所有a元素 **/
+
+a[href$="png"] {
+}
+
+/** title属性值中只要包含有"site"的所有a元素 **/
+
+a[title*="site"] {
+
+}
+
+/** 匹配以value开头或等于value的值 **/
+
+img[src|="figure"] {
+  size: 3vh;
+}
+p::first-letter {
+  color: #faa;
+}
+
+
+/* :enabled",":disabled",":checked"伪类称为 UI 元素状态伪类，这些主要是针对于 HTML 中的 Form 元素操作 */
+
+/** 下面对所不可用的文本框设置样式 **/
+
+input[type="text"]:disabled {
+  color: red;
+}
+
+/** 下面对所选中的的复选框设置样式 **/
+
+input[type="checkbox"]:checked {
+  color: blue;
+}
+
+
+/* 结构伪类选择器
+1，E:empty
+选择没有子元素的元素，而且该元素也不包含任何文本节点 
+
+E:first-of-type：类似于 E:fisrt-child，只不过它选择父元素内具有指定类型的第一个 E 元素
+E:last-of-type：类似于 E:last-child，只不过它选择父元素内具有指定类型的最后一个 E 元素
+E:nth-of-type(n)：类似于 E:nth-child(n)，只不过它选择父元素内具有指定类型的第 n 个 E 元素
+E:nth-last-of-type(n)：类似于 E:nth-last-child(n)，只不过它选择父元素内具有指定类型的倒数第 n 个 E 元素
+E:only-of-type：类似于 E:only-child，只不过它选择父元素只包含一个同类型子元素，且该子元素匹配 E 元素
+
+*/
+
+/** 比如有三个段落，其中一个段落什么都没有，完全是空的。想要这个p不显示，可这样写 **/
+
+p:empty {
+
+  display: none;
+
+}
+
+/* 否定伪类选择器
+匹配所有除元素 F 外的 E 元素，类似以 jQuery 中的 :not 选择器。 */
+
+/** 对form中所有input加边框，但又不想submit也起变化 **/
+
+input:not([type="submit"]) {
+
+  border: 1px solid red;
+
+}
+
+/* 网页选中文的效果 */
+p::selection {
+
+  background: red;
+
+  color: #fff;
+
+}
